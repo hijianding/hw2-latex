@@ -1,0 +1,61 @@
+%!TEX program = xelatex
+%使用xelatex,使用unicode,对中文支持的最好.记得文档另存为uft-8格式.
+
+\documentclass[10pt,a4paper,titlepage]{article} %默认字体大小,页面大小(a4),标题单独一页
+\usepackage{fontspec}   %引入设置字体的包
+\usepackage{xeCJK}  %使用中文环境的包,还有一个是CJK,未知
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}   %首行缩进两字符
+\renewcommand{\contentsname}{\centerline{目录}}
+
+
+\setmainfont{Times New Roman}   %英文字体
+\setCJKmainfont[BoldFont=MicrosoftYaHei]{MicrosoftYaHei}      %中文字体`'
+\title{XXX产品软件概要设计书}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\tableofcontents  %生成目录
+\clearpage
+\section{引言}
+\subsection{背景}
+[本文档的简要功能说明。]\newline
+[本文档适用于哪些人员、哪些项目、哪些领域等。]\newline
+[简要说明该产品的市场背景和主要特点。]\newline
+\subsection{产品信息}
+产品名称：\newline
+产品型号：\newline
+\subsection{软件名称}
+[说明本文档对应的软件的正式名称和版本号，或各部分的文件名和版本号。]\newline
+\subsection{术语和缩略语}
+[对文中使用的术语和缩略语进行说明。]\newline
+
+\subsection{参考资料}
+
+\section{总体设计}
+\subsection{需求规定}
+[说明对本系统的主要的输入输出项目、处理的功能性能要求。]\newline
+\subsection{运行环境}
+[简要地说明对本系统的运行环境（包括硬件环境和支持环境）的规定]\newline
+\subsection{开发环境}
+[详细说明开发和调试/测试该软件所需的硬件环境和软件环境。]\newline
+\subsection{设计思想}
+[针对需求，说明软件的全局设计思想（如面向实时、面向对象、面向数据、事件驱动等）和实现方法。]\newline
+\subsection{系统结构}
+[用一览表及框图的形式说明本系统的系统元素（各层模块、子程序、公用程序等）的划分，扼要说明每个系统元素的标识符和功能，分层次地给出各元素之间的关系（控制、顺序、信号传递等关系。）]\newline
+\subsection{处理流程}
+[说明本系统的处理流程，包括信息处理流程、功能实现过程、资源调配过程和进程控制流程等。硬使用图表的形式说明。] \newline
+\subsection{功能实现与模块的关系}
+[用如下矩阵图说明各项功能需求的实现同各模块的分配关系：\newline
+\subsection{模块开发方式说明}
+[用列表说明各模块的开发方式（新开发、移植、改进、直接使用、外协开发等）。]\newline
+\section{接口设计}
+\subsection{外部接口}
+\subsubsection{用户接口}
+[说明软件的用户界面设计要求。]
+\subsubsection{硬件接口}
+[陈述软件产品与系统硬件设备之间每一个接口的逻辑特点。还可能包括如下事宜: 要支持什么样的设备，如何支持这些设备，如何约定等。]
+\end{document}
