@@ -4,9 +4,10 @@
 \documentclass[10pt,a4paper,titlepage]{article} %默认字体大小,页面大小(a4),标题单独一页
 \usepackage{fontspec}   %引入设置字体的包
 \usepackage{xeCJK}  %使用中文环境的包,还有一个是CJK,未知
-\usepackage{indentfirst}
+\usepackage{indentfirst}    %缩进
 \usepackage{array}
-\usepackage{caption}
+\usepackage{caption}    %表图标题格式
+\usepackage{fancyhdr}   %页眉页脚
 \setlength{\parindent}{2em}   %首行缩进两字符
 \renewcommand{\contentsname}{\centerline{目录}}
 
@@ -19,13 +20,19 @@
 
 \begin{document}
 \maketitle
+\clearpage
 
+\pagestyle{fancy}   %设置页面风格，适配页眉
+\lhead{XXX软件概要说明书}  %设置左页眉文字
+\rhead{\today}
+\lfoot{机密文档，严禁外传}
+\rfoot{第 \thepage 页}
+\setcounter{page}{1}
+\pagenumbering{Roman}
 \captionsetup[table]{name={},labelsep=space}
 \renewcommand{\thetable}{}
 \renewcommand{\captionfont}{\Large}
 \begin{table}[h]
-
-
 \Large   
 \caption{文档历史发放及记录}  
 \begin{center}  
@@ -45,8 +52,10 @@
 \end{center}  
 \end{table} 
 \clearpage
-\tableofcontents  %生成目录
+\tableofcontents  %自动生成目录
 \clearpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
 \section{引言}
 \subsection{背景}
 [本文档的简要功能说明。]
