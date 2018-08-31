@@ -5,9 +5,10 @@
 \usepackage{fontspec}   %引入设置字体的包
 \usepackage{xeCJK}  %使用中文环境的包,还有一个是CJK,未知
 \usepackage{indentfirst}
+\usepackage{array}
+\usepackage{caption}
 \setlength{\parindent}{2em}   %首行缩进两字符
 \renewcommand{\contentsname}{\centerline{目录}}
-
 
 \setmainfont{Times New Roman}   %英文字体
 \setCJKmainfont[BoldFont=MicrosoftYaHei]{MicrosoftYaHei}      %中文字体`'
@@ -15,26 +16,64 @@
 \author{}
 \date{}
 
+
 \begin{document}
 \maketitle
 
+\captionsetup[table]{name={},labelsep=space}
+\renewcommand{\thetable}{}
+\renewcommand{\captionfont}{\Large}
+\begin{table}[h]
+
+
+\Large   
+\caption{文档历史发放及记录}  
+\begin{center}  
+\begin{tabular}{|c|p{4.5cm}<{\centering}|c|c|c|c|}  
+\hline  
+序号 & 变更（+/-）说明 & 作者 & 版本号 & 日期 & 批准 \\ \hline  
+1 &  &  &  &  &  \\ \hline
+  &  &  &  &  &  \\ \hline
+  &  &  &  &  &  \\ \hline
+  &  &  &  &  &  \\ \hline
+  &  &  &  &  &  \\ \hline 
+  &  &  &  &  &  \\ \hline
+  &  &  &  &  &  \\ \hline
+  &  &  &  &  &  \\ \hline 
+
+\end{tabular}  
+\end{center}  
+\end{table} 
+\clearpage
 \tableofcontents  %生成目录
 \clearpage
 \section{引言}
 \subsection{背景}
-[本文档的简要功能说明。]\newline
-[本文档适用于哪些人员、哪些项目、哪些领域等。]\newline
-[简要说明该产品的市场背景和主要特点。]\newline
+[本文档的简要功能说明。]
+
+[本文档适用于哪些人员、哪些项目、哪些领域等。]
+
+[简要说明该产品的市场背景和主要特点。]
 \subsection{产品信息}
-产品名称：\newline
-产品型号：\newline
+产品名称：
+
+产品型号：
+
 \subsection{软件名称}
 [说明本文档对应的软件的正式名称和版本号，或各部分的文件名和版本号。]\newline
 \subsection{术语和缩略语}
-[对文中使用的术语和缩略语进行说明。]\newline
-
+[对文中使用的术语和缩略语进行说明。] 
+\begin{center}  
+\begin{tabular}{|p{3cm}<{\centering}|p{3cm}<{\centering}|p{3cm}<{\centering}|}
+\hline  
+缩略语/术语 & 全称 & 说明 \\  \hline  
+  &  &   \\ \hline
+  &  &   \\ \hline
+  &  &   \\ \hline
+\end{tabular}  
+\end{center}  
+ 
 \subsection{参考资料}
-
 \section{总体设计}
 \subsection{需求规定}
 [说明对本系统的主要的输入输出项目、处理的功能性能要求。]\newline
@@ -49,13 +88,59 @@
 \subsection{处理流程}
 [说明本系统的处理流程，包括信息处理流程、功能实现过程、资源调配过程和进程控制流程等。硬使用图表的形式说明。] \newline
 \subsection{功能实现与模块的关系}
-[用如下矩阵图说明各项功能需求的实现同各模块的分配关系：\newline
+[用如下矩阵图说明各项功能需求的实现同各模块的分配关系：]
+\begin{center}  
+\begin{tabular}{|p{2cm}<{\centering}|p{2cm}<{\centering}|p{2cm}<{\centering}|p{2cm}<{\centering}|p{2cm}<{\centering}|}
+\hline  
+           & 模块1 	 & 模块2   & ...... & 模块n  \\ \hline  
+ 功能需求1 & $\surd$ &         & ...... &    \\ \hline
+ 功能需求2 &         & $\surd$ & ...... &    \\ \hline
+ ......    &         &         & ...... &    \\ \hline
+ 功能需求n &         & $\surd$ & ...... & $\surd$  \\ \hline
+\end{tabular}  
+\end{center}  
+
 \subsection{模块开发方式说明}
 [用列表说明各模块的开发方式（新开发、移植、改进、直接使用、外协开发等）。]\newline
 \section{接口设计}
 \subsection{外部接口}
 \subsubsection{用户接口}
-[说明软件的用户界面设计要求。]
+[说明软件的用户界面设计要求。]\newline
 \subsubsection{硬件接口}
-[陈述软件产品与系统硬件设备之间每一个接口的逻辑特点。还可能包括如下事宜: 要支持什么样的设备，如何支持这些设备，如何约定等。]
+[陈述软件产品与系统硬件设备之间每一个接口的逻辑特点。还可能包括如下事宜: 要支持什么样的设备，如何支持这些设备，如何约定等。]\newline
+\subsubsection{软件接口}
+[说明本系统同外界的所有软件接口、本系统与各支持软件之间的接口关系。]\newline
+\subsubsection{通讯接口}
+[说明各种通讯接口。例如串口协议、局部网络协议等。]\newline
+\subsubsection{内部接口}
+[说明软件内部各模块之间主要的信息交换或控制接口以及这些接口的作用。]\newline
+\section{运行设计}
+[说明软件的运行控制设计，包括有关中断结构、进程控制、执行顺序、程序状态转换等的设计思想，并说明采用这些设计思想的原因。对于实时处理系统或交互系统来说，该部分的设计思想非常重要。]\newline
+\section{属性设计}
+\subsection{性能}
+[说明对于该产品的性能要求，如：开机时间、升级时间、应用启动时间、换台时间、遥控器和前面板按键的响应速度等。]\newline
+\subsection{可靠性}
+[软件的可靠性指在硬件稳定的条件下，经过长时间运行和各种误操作输入（不含硬件误操作）情况下的稳定程度，其中主要包括故障处理能力、边界值处理能力和误操作屏蔽能力等。说明设计中保证可靠性的设计方案。]\newline
+\subsection{安全性}
+[这里指的是保护软件的要素，以防止各种非法的访问、使用，修改、破坏或者泄密等。]包括数据安全性和网络安全性等。]\newline
+\subsection{可维护性}
+[说明为了系统维护的方便而在程序内部设计中作出的安排，包括在程序中专门安排用于系统的检查与维护的检测点和专用模块。可维护性包括可移植性、可修改性、可扩充性等。可移植性是指在不同的硬件或软件平台上移植的方便程度；可修改性指软件的可读程度和软件出现问题时修改的方便性；可扩充性指软件对外接口和内部功能扩展的灵活性。说明保证软件可维护性的设计措施。]\newline
+\section{逻辑数据结构}
+\subsection{逻辑结构设计要点}
+[包括常规的数据结构、被封装的数据结构（对象）和数据库（如果有的话）。]\newline
+\subsection{数据结构与模块的关系}
+[采用表格说明上述数据结构与主要软件模块之间的关系。软件模块与这些数据结构的关系包括创建（Create），更新（Update），读出（Read）和发消息（Send Message）等。]\newline
+\section{物理数据结构}
+\subsection{FLASHROM分配}
+[描述FLASHROM的地址分配]\newline
+\subsection{RAM的分配}
+\subsection{NVROM的分配}
+\subsection{IC卡的地址分配[根据项目可选]}
+\section{系统出错处理}
+用一览表的方式说明每种可能的出错或故障情况出现时，系统输出信息的形式、含意及对这些情况的处理设计。可能出现的出错类别包括接收到错误数据、硬件出现故障和程序进入非正常状态等情况。\newline
+\section{系统调试与测试方法}
+\subsection{调试方式}
+[简要说明软件开发过程中的基本调试方法。]\newline
+\subsection{测试方法}
+[简要说明软件基本成形后对其进行测试的基本方法。]
 \end{document}
