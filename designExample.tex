@@ -17,7 +17,7 @@
 
 \setmainfont{Times New Roman}   %英文字体
 \setCJKmainfont[BoldFont=MicrosoftYaHei]{MicrosoftYaHei}      %中文字体`'
-\title{Binder通信架构软件概要设计书}
+\title{C服务软件概要设计书}
 \author{丁健}
 \date{ \today }
 
@@ -27,7 +27,7 @@
 \clearpage
 \pagestyle{empty}
 \pagestyle{fancy}   %设置页面风格，适配页眉
-\lhead{ Binder通信架构软件概要设计书 }  %设置左页眉文字
+\lhead{ C服务软件概要设计书 }  %设置左页眉文字
 \rhead{\today}
 \lfoot{机密文档，严禁外传}
 \cfoot{}
@@ -63,7 +63,7 @@
 \pagenumbering{arabic}
 \section{引言}
 \subsection{背景}
-本篇文档主要目的对使用Binder建立C服务于APK之间进行通信的软件概要设计。
+本篇文档主要目的对使用Binder建立C服务用于APK之间进行通信的软件概要设计。
 
 该文档适用于使用Binder项目中各个模块的开发人员与测试人员。
 
@@ -105,25 +105,29 @@
 \begin{center}  
 \begin{tabular}{|m{3cm}<{\centering}|m{3cm}<{\centering}|m{3cm}<{\centering}|m{3cm}<{\centering}|}
 \hline  
-           & C服务 	 & APK     & 编译模块  \\ \hline  
- 底层提供服务 & $\surd$ &         &     \\ \hline
- 手机端功能 &         & $\surd$ &     \\ \hline
- APK调用服务 & $\surd$ & $\surd$ &  $\surd$  \\ \hline
+           & 调用模块  & 服务模块 & 编译模块  \\ \hline  
+ 调用底层服务 & $\surd$ &         &     \\ \hline
+ 提供打印功能 &         & $\surd$ &     \\ \hline
+ 供APK调用 & $\surd$ & $\surd$ &  $\surd$  \\ \hline
 \end{tabular}  
 \end{center}  
 
 \subsection{模块开发方式说明}
-[用列表说明各模块的开发方式（新开发、移植、改进、直接使用、外协开发等）。]\newline
+\begin{itemize}
+  \item[-] 调用模块：新开发
+  \item[-] 服务模块：新开发
+  \item[-] 编译模块：改进
+\end{itemize}
 \section{接口设计}
 \subsection{外部接口}
 \subsubsection{用户接口}
-[说明软件的用户界面设计要求。]\newline
+无
 \subsubsection{硬件接口}
-[陈述软件产品与系统硬件设备之间每一个接口的逻辑特点。还可能包括如下事宜: 要支持什么样的设备，如何支持这些设备，如何约定等。]\newline
+数据线
 \subsubsection{软件接口}
 [说明本系统同外界的所有软件接口、本系统与各支持软件之间的接口关系。]\newline
 \subsubsection{通讯接口}
-[说明各种通讯接口。例如串口协议、局部网络协议等。]\newline
+无
 \subsubsection{内部接口}
 [说明软件内部各模块之间主要的信息交换或控制接口以及这些接口的作用。]\newline
 \section{运行设计}
