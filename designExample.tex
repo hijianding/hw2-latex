@@ -9,7 +9,15 @@
 \usepackage{caption}    %表图标题格式
 \usepackage{fancyhdr}   %页眉页脚
 \usepackage{makecell}
-\usepackage{geometry}
+
+%UML绘制工具包
+\usepackage[a4paper,margin=1cm,landscape]{geometry}
+\usepackage{tikz}
+\usepackage{amsmath,bm,times}
+\usepackage{amsmath,bm,times}
+\newcommand{\mx}[1]{\mathbf{\bm{#1}}} % Matrix command
+\newcommand{\vc}[1]{\mathbf{\bm{#1}}} % Vector command
+\usetikzlibrary{positioning,shapes,shadows,arrows}
 
 \geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
 \setlength{\parindent}{2em}   %首行缩进两字符
@@ -74,6 +82,40 @@
 
 \subsection{软件名称}
 [说明本文档对应的软件的正式名称和版本号，或各部分的文件名和版本号。]\newline
+\tikzstyle{abstract}=[rectangle, draw=black, rounded corners, fill=blue!40, drop shadow,
+  text centered, anchor=north, text=white, text width=3cm]
+  
+  \tikzstyle{myarrow}=[->, >=open triangle 90, thick]
+  \tikzstyle{line}=[-, thick]
+  
+  \begin{center}
+    \begin{tikzpicture}[node distance=2cm]
+    \node (BBinder) [abstract, rectangle split, rectangle split parts=3]
+    {
+      \textbf{Bbinder}
+      \nodepart{third}OnTranscat()
+    };
+
+    \node (AuxNode01) [text width=4cm, below=of BBinder] {};
+
+    \node (Service) [abstract, rectangle split, rectangle split parts=3,below=of BBinder]
+    {
+      \textbf{Service}
+      \nodepart{second}
+    };
+  
+    \node (Behavior) [abstract, rectangle split, rectangle split parts=3, left=of Service]
+    {
+      \textbf{Behavior}
+      \nodepart{second}
+    };
+  
+    \draw[myarrow] (Service.north) -- ++(0,0.8) -| (BBinder.south);
+    \draw[line] (Behavior.east) -- ++(0,0) -| (Service.west);
+    
+    \end{tikzpicture}
+  \end{center}
+
 \subsection{术语和缩略语}
 [对文中使用的术语和缩略语进行说明。] 
 \begin{center}  
@@ -98,6 +140,42 @@
 [针对需求，说明软件的全局设计思想（如面向实时、面向对象、面向数据、事件驱动等）和实现方法。]\newline
 \subsection{系统结构}
 [用一览表及框图的形式说明本系统的系统元素（各层模块、子程序、公用程序等）的划分，扼要说明每个系统元素的标识符和功能，分层次地给出各元素之间的关系（控制、顺序、信号传递等关系。）]\newline
+\usetikzlibrary{shapes,arrows,shadows}
+% Define block styles used later
+
+\tikzstyle{sensor}=[draw, fill=blue!20, text width=5em, 
+    text centered, minimum height=2.5em,drop shadow]
+\tikzstyle{wa} = [sensor, text width=10em, fill=red!20, 
+    minimum height=6em, rounded corners, drop shadow]
+\tikzstyle{sc} = [sensor, text width=10em, fill=red!20, 
+    minimum height=6em, rounded corners, drop shadow]
+
+\begin{tikzpicture}
+
+    %Define Models;
+    
+    \node (wa) [wa]  {AOSP};
+    \path (wa.north)+(0,2.0) node (initrc) [sensor] {init.rc}; 
+    \path (wa.south)+(0,-2.0) node (apk) [sensor] {APK};
+    \path (wa.west)+(-4.0,0) node (Cserver) [sc] {\textbf{Cserver}};
+    \path (initrc.west)+(-4.9,0) node (bin) [sensor] {bin};
+    \path (Cserver.south)+(0,-2.0) node (so)[sensor] {.so};  
+
+    %Define Lines;
+
+    \path [draw, <-] (initrc.south) -- node [above] {} 
+        (wa.90) ;
+    \path [draw, ->] (wa.south) -- node [above] {} 
+        (apk.north);
+    \path [draw, <-] (bin.south) -- node [left] {android$\_$gcc} 
+        (Cserver.90) ;
+    \path [draw, <-] (so.north) -- node [left] {make-standalone-toolchain} 
+        (Cserver.270);
+    \path [draw, ->] (initrc.west) -- node [above] {start} (bin.east) ;    
+    \path [draw, ->] (apk.west) -- node [above] {JNI} (so.east) ;
+      
+\end{tikzpicture}
+
 \subsection{处理流程}
 [说明本系统的处理流程，包括信息处理流程、功能实现过程、资源调配过程和进程控制流程等。硬使用图表的形式说明。] \newline
 \subsection{功能实现与模块的关系}
@@ -126,6 +204,7 @@
 数据线
 \subsubsection{软件接口}
 [说明本系统同外界的所有软件接口、本系统与各支持软件之间的接口关系。]\newline
+
 \subsubsection{通讯接口}
 无
 \subsubsection{内部接口}
