@@ -17,9 +17,9 @@
 
 \setmainfont{Times New Roman}   %英文字体
 \setCJKmainfont[BoldFont=MicrosoftYaHei]{MicrosoftYaHei}      %中文字体`'
-\title{XXX软件概要设计书}
-\author{}
-\date{}
+\title{Binder通信架构软件概要设计书}
+\author{丁健}
+\date{ \today }
 
 
 \begin{document}
@@ -27,7 +27,7 @@
 \clearpage
 \pagestyle{empty}
 \pagestyle{fancy}   %设置页面风格，适配页眉
-\lhead{ XXX软件概要设计书 }  %设置左页眉文字
+\lhead{ Binder通信架构软件概要设计书 }  %设置左页眉文字
 \rhead{\today}
 \lfoot{机密文档，严禁外传}
 \cfoot{}
@@ -44,7 +44,7 @@
 \begin{tabular}{|m{1.5cm}<{\centering}|m{4.5cm}<{\centering}|m{2cm}<{\centering}|m{2cm}<{\centering}|m{2.2cm}<{\centering}|m{1.3cm}<{\centering}|}  
 \hline  
 序号 & 变更（+/-）说明 & 作者 & 版本号 & 日期 & 批准 \\ \hline  
-1 &  &  &  &  &  \\ \hline
+1 & 新增文档示例，使用latex模板完成一个示例 & 丁健 & draft 1 & 2018.09.01 &  \\ \hline
   &  &  &  &  &  \\ \hline
   &  &  &  &  &  \\ \hline
   &  &  &  &  &  \\ \hline
@@ -63,25 +63,24 @@
 \pagenumbering{arabic}
 \section{引言}
 \subsection{背景}
-[本文档的简要功能说明。]
+本篇文档主要目的对使用Binder建立C服务于APK之间进行通信的软件概要设计。
 
-[本文档适用于哪些人员、哪些项目、哪些领域等。]
+该文档适用于使用Binder项目中各个模块的开发人员与测试人员。
 
-[简要说明该产品的市场背景和主要特点。]
 \subsection{产品信息}
-产品名称：
+产品名称：Binder通信架构
 
-产品型号：
+产品型号：无
 
 \subsection{软件名称}
 [说明本文档对应的软件的正式名称和版本号，或各部分的文件名和版本号。]\newline
 \subsection{术语和缩略语}
 [对文中使用的术语和缩略语进行说明。] 
 \begin{center}  
-\begin{tabular}{|m{5cm}<{\centering}|m{5cm}<{\centering}|m{5cm}<{\centering}|} 
+\begin{tabular}{|m{5cm}<{\centering}|m{5cm}<{\centering}|m{5cm}<{\centering}|}
 \hline  
 缩略语/术语 & 全称 & 说明 \\  \hline  
-  &  &   \\ \hline
+ IPC & Inter-Process Communication & 进程通信  \\ \hline
   &  &   \\ \hline
   &  &   \\ \hline
 \end{tabular}  
@@ -104,13 +103,12 @@
 \subsection{功能实现与模块的关系}
 [用如下矩阵图说明各项功能需求的实现同各模块的分配关系：]
 \begin{center}  
-\begin{tabular}{|m{3cm}<{\centering}|m{3cm}<{\centering}|m{3cm}<{\centering}|m{3cm}<{\centering}|m{3cm}<{\centering}|}
+\begin{tabular}{|m{3cm}<{\centering}|m{3cm}<{\centering}|m{3cm}<{\centering}|m{3cm}<{\centering}|}
 \hline  
-           & 模块1 	 & 模块2   & ...... & 模块n  \\ \hline  
- 功能需求1 & $\surd$ &         & ...... &    \\ \hline
- 功能需求2 &         & $\surd$ & ...... &    \\ \hline
- ......    &         &         & ...... &    \\ \hline
- 功能需求n &         & $\surd$ & ...... & $\surd$  \\ \hline
+           & C服务 	 & APK     & 编译模块  \\ \hline  
+ 底层提供服务 & $\surd$ &         &     \\ \hline
+ 手机端功能 &         & $\surd$ &     \\ \hline
+ APK调用服务 & $\surd$ & $\surd$ &  $\surd$  \\ \hline
 \end{tabular}  
 \end{center}  
 
